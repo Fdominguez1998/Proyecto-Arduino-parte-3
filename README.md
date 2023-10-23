@@ -3,20 +3,20 @@
 [![Arduino-presentacion.jpg](https://i.postimg.cc/P5Rf0hmp/Arduino-presentacion.jpg)](https://postimg.cc/yD0zSMps)
 
 
-#### Integrantes
+### Integrantes
 
 ------------
 - Daraio Camila.
 - Dominguez Franco.
 
  
-#### Proyecto contador Binario.
+### Proyecto contador Binario.
 
 ------------
 
 [![Arduino.png](https://i.postimg.cc/9fK4PcDY/Arduino.png)](https://postimg.cc/7C1Yw8M5)
 
-####  Descripcion
+###  Descripcion
 
 ------------
 
@@ -30,7 +30,7 @@ En la fase final de nuestro proyecto, hemos incorporado una Bombilla y un sensor
 ------------
 
 
-####  Funcion principal
+###  Funcion principal
 
 ------------
 
@@ -106,7 +106,7 @@ void loop() {
 ```
 
 
-###### Link del proyecto
+### Link del proyecto
 
 ------------
 
@@ -115,7 +115,7 @@ void loop() {
 
 ------------
 
-###### Fuentes
+### Fuentes
 
 - https://www.youtube.com/watch?v=_Ry7mtURGDE&t=1927s
 
