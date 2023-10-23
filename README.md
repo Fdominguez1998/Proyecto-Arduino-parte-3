@@ -24,7 +24,7 @@ Hemos realizado modificaciones en la primera parte del proyecto, reemplazando lo
 
 En la segunda parte hemos añadido un sensor de temperatura y un motor de corriente continua al Arduino. Esto nos permite controlar la temperatura y evitar el sobrecalentamiento. Cuando el sensor detecta una temperatura elevada, el motor se enciende, y al mismo tiempo, se activa un LED rojo como indicador de advertencia.
 
-En la fase final de nuestro proyecto, hemos incorporado un LED y una fotoresistencia para detectar la variación en la intensidad luminosa. Esta fotoresistencia actúa como un sensor que reacciona a la presencia o ausencia de luz. Cuando el entorno tiene una mayor cantidad de luz, el LED se apaga automáticamente. Por el contrario, en condiciones de poca luz, el LED se enciende, permitiéndonos adaptar la iluminación a las condiciones ambientales.
+En la fase final de nuestro proyecto, hemos incorporado una Bombilla y un sensor de luz ambiental para detectar la variación en la intensidad luminosa. Este sensor reacciona a la presencia o ausencia de luz. Cuando el entorno tiene una baja cantidad de luz, la bombilla se prende automáticamente. Por el contrario, en condiciones de mucha luz, el bombilla se apaga, permitiéndonos adaptar la iluminación a las condiciones ambientales.
 
 ------------
 
