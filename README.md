@@ -13,7 +13,7 @@
 
 ------------
 
-[![Captura-de-pantalla-2023-10-22-203422.png](https://i.postimg.cc/8CZbgD0v/Captura-de-pantalla-2023-10-22-203422.png)](https://postimg.cc/wtsNhKHx)
+[![Arduino.png](https://i.postimg.cc/9fK4PcDY/Arduino.png)](https://postimg.cc/7C1Yw8M5)
 
 ####  Descripcion
 
