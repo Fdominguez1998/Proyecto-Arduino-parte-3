@@ -1,0 +1,254 @@
+#define B 13
+#define A 12
+#define F 11
+#define G 10
+#define E 9
+#define D 8
+#define C 7
+#define UNIDAD A4
+#define DECENA A5
+#define APAGADOS 0
+#define led 3
+#define  motor  5
+#define Bombilla 2
+#define TIMEDISPLAYON 10
+
+
+int medida = 0;
+int ntc = 0;
+int nivel = 152;
+
+int sensordeluz= 3;
+int valordelsensor;
+
+
+int countDigitt = 0;
+int countDigit = 0;
+int lastSwitchState = HIGH;
+int currentSwitchState;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(Bombilla, OUTPUT) ;
+  pinMode(7, OUTPUT);
+  pinMode(8, OUTPUT);
+  pinMode(9, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(11, OUTPUT);
+  pinMode(12, OUTPUT);
+  pinMode(13, OUTPUT);
+  pinMode(led,OUTPUT);
+  pinMode(motor,OUTPUT);
+  pinMode(UNIDAD, OUTPUT);
+  pinMode(DECENA, OUTPUT);
+  pinMode(4, INPUT_PULLUP);
+  digitalWrite(UNIDAD, LOW);
+  digitalWrite(DECENA, LOW);
+  printDigit(0);
+  
+}
+
+
+bool esPrimo(int numero) {
+  // 0 y 1 no son primos
+  if (numero <= 1) {
+    return false;
+  }
+
+  // Verifica divisores desde 2 hasta la raíz cuadrada del número
+  for (int i = 2; i * i <= numero; i++) {
+    if (numero % i == 0)
+      {
+      return false; // No es primo
+    }
+  }
+
+  return true; // Es primo
+}
+
+void monitoriza(){
+Serial.print("La medida es ...");
+  Serial.println(medida);
+  delay (100);
+  
+}
+
+void loop() {
+  
+  currentSwitchState = digitalRead(4);
+  valordelsensor = analogRead(sensordeluz);
+  
+  if (valordelsensor >80){
+    digitalWrite (Bombilla, HIGH);
+    
+  }
+  else{
+    digitalWrite (Bombilla, LOW);
+  }
+
+  if (currentSwitchState == LOW && lastSwitchState == HIGH) {
+    countDigit = (countDigit + 1) % 100;
+    if (esPrimo(countDigit)) {
+    // Muestra el número primo en el display
+    printCount(countDigit);
+    }
+  } 
+  else 
+  {  
+	countDigit = (countDigit + 1) % 100;
+    printCount(countDigit);
+  }
+  
+  medida=analogRead(ntc);
+  monitoriza();
+  if (medida>nivel){
+    digitalWrite(led,HIGH);
+    digitalWrite(motor,HIGH);}
+   else{
+      digitalWrite(led,LOW);
+      digitalWrite(motor,LOW);
+  }   
+   
+}
+
+void printDigit(int digit)
+{
+	digitalWrite(A, LOW);
+  	digitalWrite(B, LOW);
+  	digitalWrite(C, LOW);
+	digitalWrite(D, LOW);
+	digitalWrite(E, LOW);
+  	digitalWrite(F, LOW);
+	digitalWrite(G, LOW);
+  	switch(digit)
+    {
+      case 1:
+      {
+        digitalWrite(B, HIGH);
+  		digitalWrite(C, HIGH);
+        break;
+      }
+      case 2:
+      {
+       digitalWrite(A, HIGH);
+  	   digitalWrite(B, HIGH);
+       digitalWrite(D, HIGH);
+  	   digitalWrite(E, HIGH);
+  	   digitalWrite(G, HIGH);
+        break;
+      }
+       case 3:
+      {
+       digitalWrite(A, HIGH);
+  	   digitalWrite(B, HIGH);
+       digitalWrite(G, HIGH);
+  	   digitalWrite(C, HIGH);
+  	   digitalWrite(D, HIGH);
+       	break;
+      }
+      case 4:
+      {
+       digitalWrite(B, HIGH);
+  	   digitalWrite(C, HIGH);
+       digitalWrite(F, HIGH);
+  	   digitalWrite(G, HIGH);
+        break; 
+      }
+      case 5:
+      {
+       digitalWrite(A, HIGH);
+  	   digitalWrite(C, HIGH);
+       digitalWrite(D, HIGH);
+  	   digitalWrite(F, HIGH);
+  	   digitalWrite(G, HIGH);
+        break;
+      }
+      case 6:
+      {
+       digitalWrite(A, HIGH);
+  	   digitalWrite(C, HIGH);
+       digitalWrite(D, HIGH);
+  	   digitalWrite(E, HIGH);
+  	   digitalWrite(F, HIGH);
+       digitalWrite(G, HIGH);
+        break;
+      } 
+      case 7:
+      {
+       digitalWrite(A, HIGH);
+  	   digitalWrite(B, HIGH);
+       digitalWrite(C, HIGH);
+         break;
+
+      }
+      case 8:
+      {
+       digitalWrite(A, HIGH);
+  	   digitalWrite(B, HIGH);
+       digitalWrite(C, HIGH);
+  	   digitalWrite(D, HIGH);
+  	   digitalWrite(E, HIGH);
+       digitalWrite(F, HIGH);
+  	   digitalWrite(G, HIGH);
+        break;
+      }
+      case 9:
+      {
+       digitalWrite(A, HIGH);
+  	   digitalWrite(B, HIGH);
+       digitalWrite(C, HIGH);
+  	   digitalWrite(D, HIGH);
+  	   digitalWrite(F, HIGH);
+       digitalWrite(G, HIGH);
+        break;
+      }
+      case 0:
+      {
+       digitalWrite(A, HIGH);
+  	   digitalWrite(B, HIGH);
+       digitalWrite(C, HIGH);
+  	   digitalWrite(D, HIGH);
+  	   digitalWrite(E, HIGH);
+       digitalWrite(F, HIGH);
+        break;
+      }
+      
+    }  	
+     
+}
+
+
+void prendeDigito(int digito)
+{
+	if(digito == UNIDAD)
+    {
+    	digitalWrite(UNIDAD, LOW);
+        digitalWrite(DECENA, HIGH);
+    }
+  	else if(digito == DECENA)
+    {
+    	digitalWrite(UNIDAD, HIGH);
+        digitalWrite(DECENA, LOW);
+    }
+  	else
+    {
+    	digitalWrite(UNIDAD, HIGH);
+        digitalWrite(DECENA, HIGH);
+    } 
+}
+
+
+void printCount(int count)
+ {
+  	prendeDigito(APAGADOS);
+  	printDigit(count/10);  	
+ 	prendeDigito(DECENA);
+  	delay(100);
+  	prendeDigito(APAGADOS);
+  	printDigit(count - 10*((int)count/10));
+ 	prendeDigito(UNIDAD);
+  	delay(500);
+ }
+
+
+  
